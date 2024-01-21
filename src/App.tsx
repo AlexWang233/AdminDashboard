@@ -16,10 +16,6 @@ import {
 } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import dataProvider, {
-  GraphQLClient,
-  liveProvider,
-} from "@refinedev/nestjs-query";
 import { createClient } from "graphql-ws";
 import { App as AntdApp } from "antd";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
@@ -32,6 +28,7 @@ import routerBindings, {
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { ForgotPassword } from "./pages/forgotPassword";
+import { dataProvider, liveProvider } from "./providers";
 
 function App() {
   return (
@@ -41,8 +38,8 @@ function App() {
         <AntdApp>
           <DevtoolsProvider>
             <Refine
-              //dataProvider={dataProvider(gqlClient)}
-              //liveProvider={liveProvider(wsClient)}
+              dataProvider={dataProvider}
+              liveProvider={liveProvider}
               notificationProvider={useNotificationProvider}
               routerProvider={routerBindings}
               //authProvider={}
