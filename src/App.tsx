@@ -25,10 +25,8 @@ import routerBindings, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
-import { ForgotPassword } from "./pages/forgotPassword";
 import { authProvider, dataProvider, liveProvider } from "./providers";
+import { ForgotPassword, Home, Login, Register } from "./pages";
 
 function App() {
   return (
@@ -53,6 +51,10 @@ function App() {
             >
               <Routes>
                 <Route index element={<WelcomePage />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route index element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
               </Routes>
               <RefineKbar />
               <UnsavedChangesNotifier />
