@@ -1,10 +1,13 @@
+import { Layout, Space } from "antd";
 import CurrentUser from "./current-user";
 
 const Header = () => {
   return (
-    <div>
-      <CurrentUser />
-    </div>
+    <Layout.Header>
+      <Space>
+        <CurrentUser />
+      </Space>
+    </Layout.Header>
   );
 };
 
