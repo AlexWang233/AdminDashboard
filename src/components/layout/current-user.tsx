@@ -14,7 +14,12 @@ const CurrentUser = () => {
         overlayInnerStyle={{ padding: 0 }}
         overlayStyle={{ zIndex: 999 }}
       >
-        <CustomAvatar />
+        <CustomAvatar
+          name={user?.name}
+          src={user?.avatarUrl}
+          size="default"
+          style={{ cursor: "pointer" }}
+        />
       </Popover>
     </>
   );
