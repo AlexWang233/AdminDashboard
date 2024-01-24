@@ -2,8 +2,10 @@ import { DollarOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 import React from "react";
 import { Text } from "../text";
+import { Area, AreaConfig } from "@ant-design/plots";
 
 const DealsChart = () => {
+  const config: AreaConfig = { data: [] };
   return (
     <Card
       style={{ height: "100%" }}
@@ -15,7 +17,9 @@ const DealsChart = () => {
           <Text size="sm" style={{ marginLeft: "0.5rem" }}></Text>
         </div>
       }
-    ></Card>
+    >
+      <Area {...config} height={325} />
+    </Card>
   );
 };
 
