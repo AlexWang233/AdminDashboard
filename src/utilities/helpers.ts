@@ -19,7 +19,7 @@ export const getDate = (startDate: string, endDate: string) => {
   const start = dayjs(startDate).format("MMM DD, YYYY - HH:mm");
   const end = dayjs(endDate).format("MMM DD, YYYY - HH:mm");
 
-  return `${start} - ${end}`;
+  return `${start} to ${end}`;
 };
 
 // Filter out deals that don't have a closeDateMonth or closeDateYear

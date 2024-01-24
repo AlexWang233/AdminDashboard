@@ -66,7 +66,19 @@ const UpcomingEvents = () => {
               </List.Item>
             );
           }}
-        ></List>
+        />
+      )}
+      {!isLoading && data?.data.length === 0 && (
+        <span
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "220px",
+          }}
+        >
+          No Upcoming Events
+        </span>
       )}
     </Card>
   );
