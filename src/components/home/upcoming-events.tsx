@@ -4,9 +4,16 @@ import { Text } from "../text";
 import React, { useState } from "react";
 import UpcomingEventsSkeleton from "../skeleton/upcoming-events";
 import { getDate } from "@/utilities/helpers";
+import { useList } from "@refinedev/core";
+import { DASHBOARD_CALENDAR_UPCOMING_EVENTS_QUERY } from "@/graphql/queries";
 
 const UpcomingEvents = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const { data, isLoading: eventsLoading } = useList({
+    resource: "events",
+    meta: { gqlQuery: DASHBOARD_CALENDAR_UPCOMING_EVENTS_QUERY },
+  });
+
   return (
     <Card
       style={{ height: "100%" }}
