@@ -2,6 +2,7 @@ import { CalendarOutlined } from "@ant-design/icons";
 import { Card, List } from "antd";
 import { Text } from "../text";
 import React, { useState } from "react";
+import UpcomingEventsSkeleton from "../skeleton/upcoming-events";
 
 const UpcomingEvents = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +26,8 @@ const UpcomingEvents = () => {
           dataSource={Array.from({ length: 5 }).map((_, index) => ({
             id: index,
           }))}
-        ></List>
+          renderItem={() => <UpcomingEventsSkeleton />}
+        />
       ) : (
         <List></List>
       )}
