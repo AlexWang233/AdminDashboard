@@ -6,7 +6,7 @@ import { useGo } from "@refinedev/core";
 import { CREATE_COMPANY_MUTATION } from "@/graphql/mutations";
 import { USERS_SELECT_QUERY } from "@/graphql/queries";
 import SelectOptionWithAvatar from "@/components/select-option-with-avatar";
-import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { UsersSelectQuery } from "@/graphql/types";
 
 export const Create = () => {
@@ -66,7 +66,7 @@ export const Create = () => {
               {...selectProps}
               options={
                 queryResult.data?.data.map((user) => ({
-                  values: user.id,
+                  value: user.id,
                   label: (
                     <SelectOptionWithAvatar
                       name={user.name}
