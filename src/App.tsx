@@ -18,7 +18,7 @@ import routerBindings, {
   DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { authProvider, dataProvider, liveProvider } from "./providers";
-import { ForgotPassword, Home, Login, Register } from "./pages";
+import { Edit, ForgotPassword, Home, Login, Register } from "./pages";
 import Layout from "./components/layout";
 import { resources } from "./config/resources";
 import { CompanyList } from "./pages/company/list";
@@ -66,6 +66,7 @@ function App() {
                   <Route path="/companies">
                     <Route index element={<CompanyList />} />
                     <Route path="new" element={<Create />} />
+                    <Route path="edit/:id" element={<Edit />} />
                   </Route>
                 </Route>
               </Routes>
