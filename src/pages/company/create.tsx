@@ -1,9 +1,13 @@
 import React from "react";
 import { CompanyList } from "./list";
-import { Form, Input, Modal } from "antd";
-import { useModalForm } from "@refinedev/antd";
+import { Form, Input, Modal, Select } from "antd";
+import { useModalForm, useSelect } from "@refinedev/antd";
 import { useGo } from "@refinedev/core";
 import { CREATE_COMPANY_MUTATION } from "@/graphql/mutations";
+import { USERS_SELECT_QUERY } from "@/graphql/queries";
+import SelectOptionWithAvatar from "@/components/select-option-with-avatar";
+import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
+import { UsersSelectQuery } from "@/graphql/types";
 
 export const Create = () => {
   const go = useGo();
@@ -25,6 +29,17 @@ export const Create = () => {
       gqlMutation: CREATE_COMPANY_MUTATION,
     },
   });
+
+  const { selectProps, queryResult } = useSelect<
+    GetFieldsFromList<UsersSelectQuery>
+  >({
+    resource: "users",
+    optionLabel: "name",
+    meta: {
+      gqlQuery: USERS_SELECT_QUERY,
+    },
+  });
+
   return (
     <CompanyList>
       <Modal
@@ -40,7 +55,28 @@ export const Create = () => {
             name="name"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Enter a company name here please" />
+            <Input placeholder="Enter company name here" />
+          </Form.Item>
+          <Form.Item
+            label="Sales owner"
+            name="salesOwnerId"
+            rules={[{ required: true }]}
+          >
+            <Select
+              {...selectProps}
+              options={
+                queryResult.data?.data.map((user) => ({
+                  values: user.id,
+                  label: (
+                    <SelectOptionWithAvatar
+                      name={user.name}
+                      avatarUrl={user.avatarUrl ?? undefined}
+                    />
+                  ),
+                })) ?? []
+              }
+              placeholder="Select sales owner here"
+            />
           </Form.Item>
         </Form>
       </Modal>
