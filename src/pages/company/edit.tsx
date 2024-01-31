@@ -13,6 +13,7 @@ import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { Col, Form, Input, InputNumber, Row, Select } from "antd";
 import React from "react";
+import { CompanyContactsTable } from "./contacts-table";
 
 export const EditPage = () => {
   const { selectProps, queryResult: queryResultUsers } = useSelect<
@@ -96,6 +97,9 @@ export const EditPage = () => {
               </Form.Item>
             </Form>
           </Edit>
+        </Col>
+        <Col xs={24} xl={12}>
+          <CompanyContactsTable />
         </Col>
       </Row>
     </div>
