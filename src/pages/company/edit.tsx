@@ -12,7 +12,6 @@ import { getNameInitials } from "@/utilities";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { Col, Form, Input, InputNumber, Row, Select } from "antd";
-import React from "react";
 import { CompanyContactsTable } from "./contacts-table";
 
 export const EditPage = () => {

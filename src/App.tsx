@@ -18,11 +18,12 @@ import routerBindings, {
   DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { authProvider, dataProvider, liveProvider } from "./providers";
-import { Edit, ForgotPassword, Home, Login, Register } from "./pages";
+import { EditPage, ForgotPassword, Home, Login, Register } from "./pages";
 import Layout from "./components/layout";
 import { resources } from "./config/resources";
 import { CompanyList } from "./pages/company/list";
 import { Create } from "./pages/company/create";
+import List from "./pages/tasks/list";
 
 function App() {
   return (
@@ -66,7 +67,10 @@ function App() {
                   <Route path="/companies">
                     <Route index element={<CompanyList />} />
                     <Route path="new" element={<Create />} />
-                    <Route path="edit/:id" element={<Edit />} />
+                    <Route path="edit/:id" element={<EditPage />} />
+                  </Route>
+                  <Route path="/tasks">
+                    <Route index element={<List />} />
                   </Route>
                 </Route>
               </Routes>
