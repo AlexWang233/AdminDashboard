@@ -1,12 +1,17 @@
 import CustomAvatar from "@/components/custom-avatar";
 import SelectOptionWithAvatar from "@/components/select-option-with-avatar";
+import {
+  businessTypeOptions,
+  companySizeOptions,
+  industryOptions,
+} from "@/constants";
 import { UPDATE_COMPANY_MUTATION } from "@/graphql/mutations";
 import { USERS_SELECT_QUERY } from "@/graphql/queries";
 import { UsersSelectQuery } from "@/graphql/types";
 import { getNameInitials } from "@/utilities";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
-import { Col, Form, Row, Select } from "antd";
+import { Col, Form, Input, InputNumber, Row, Select } from "antd";
 import React from "react";
 
 export const EditPage = () => {
@@ -15,6 +20,9 @@ export const EditPage = () => {
   >({
     resource: "users",
     optionLabel: "name",
+    pagination: {
+      mode: "off",
+    },
     meta: {
       gqlQuery: USERS_SELECT_QUERY,
     },
@@ -62,6 +70,29 @@ export const EditPage = () => {
                   }
                   placeholder="Select sales owner here"
                 />
+              </Form.Item>
+              <Form.Item>
+                <Select options={companySizeOptions} />
+              </Form.Item>
+              <Form.Item>
+                <InputNumber
+                  autoFocus
+                  addonBefore="$"
+                  min={0}
+                  placeholder="0.00"
+                />
+              </Form.Item>
+              <Form.Item label="Industy">
+                <Select options={industryOptions} />
+              </Form.Item>
+              <Form.Item label="Business">
+                <Select options={businessTypeOptions} />
+              </Form.Item>
+              <Form.Item label="Country" name="country">
+                <Input placeholder="Country" />
+              </Form.Item>
+              <Form.Item label="Website" name="website">
+                <Input placeholder="Website" />
               </Form.Item>
             </Form>
           </Edit>
