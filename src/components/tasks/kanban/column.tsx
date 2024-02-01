@@ -4,7 +4,7 @@ import { useDroppable } from "@dnd-kit/core";
 import { Badge, Button, Space } from "antd";
 import React from "react";
 
-const KanbanColumn = () => {
+const KanbanColumn = ({ children }: React.PropsWithChildren) => {
   const { isOver, setNodeRef, active } = useDroppable({
     id: "",
     data: "",
@@ -38,6 +38,26 @@ const KanbanColumn = () => {
           />
         </Space>
         {description}
+      </div>
+      <div
+        style={{
+          flex: 1,
+          overflowY: active ? "unset" : "auto",
+          border: "2px dashed transparent",
+          borderColor: isOver ? "#000040" : "transparent",
+          borderRadius: "4px",
+        }}
+      >
+        <div
+          style={{
+            marginTop: "12px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+          }}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );
