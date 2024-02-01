@@ -9,7 +9,7 @@ import SelectOptionWithAvatar from "@/components/select-option-with-avatar";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { UsersSelectQuery } from "@/graphql/types";
 
-export const Create = () => {
+export const CreateCompanyPage = () => {
   const go = useGo();
   const goToListPage = () => {
     go({

@@ -14,7 +14,7 @@ import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { Col, Form, Input, InputNumber, Row, Select } from "antd";
 import { CompanyContactsTable } from "./contacts-table";
 
-export const EditPage = () => {
+export const EditCompanyPage = () => {
   const { selectProps, queryResult: queryResultUsers } = useSelect<
     GetFieldsFromList<UsersSelectQuery>
   >({
