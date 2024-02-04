@@ -2,7 +2,7 @@ import { User } from "@/graphql/schema.types";
 import { Button, Card, ConfigProvider, Dropdown, MenuProps, theme } from "antd";
 import { Text } from "@/components/text";
 import React, { useMemo } from "react";
-import { EyeOutlined, MoreOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
 
 type ProjectCardProps = {
   id: string;
@@ -33,6 +33,7 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
         danger: true,
         label: "Delete Card",
         key: "2",
+        icon: <DeleteOutlined />,
         onClick: () => {},
       },
     ];
@@ -57,7 +58,12 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
           title={<Text ellipsis={{ tooltip: title }}>{title}</Text>}
           onClick={() => edit()}
           extra={
-            <Dropdown trigger={["click"]} menu={{ items: dropdownItems }}>
+            <Dropdown
+              trigger={["click"]}
+              menu={{ items: dropdownItems }}
+              placement="bottom"
+              arrow={{ pointAtCenter: true }}
+            >
               <Button
                 type="text"
                 shape="circle"
@@ -71,7 +77,16 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
               />
             </Dropdown>
           }
-        ></Card>
+        >
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          ></div>
+        </Card>
       </ConfigProvider>
     </div>
   );
