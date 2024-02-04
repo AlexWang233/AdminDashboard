@@ -88,7 +88,7 @@ const List = () => {
                 id={task.id}
                 data={{ ...task, stageId: "unassigned" }}
               >
-                <ProjectCard />
+                <ProjectCard {...task} dueDate={task.dueDate || undefined} />
               </KanbanItem>
             ))}
           </KanbanColumn>
