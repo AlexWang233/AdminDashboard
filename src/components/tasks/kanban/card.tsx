@@ -1,8 +1,27 @@
 import { User } from "@/graphql/schema.types";
-import { Button, Card, ConfigProvider, Dropdown, MenuProps, theme } from "antd";
+import {
+  Button,
+  Card,
+  ConfigProvider,
+  Dropdown,
+  MenuProps,
+  Space,
+  Tag,
+  Tooltip,
+  theme,
+} from "antd";
 import { Text } from "@/components/text";
 import React, { useMemo } from "react";
-import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
+import {
+  ClockCircleOutlined,
+  DeleteOutlined,
+  EyeOutlined,
+  MoreOutlined,
+} from "@ant-design/icons";
+import { TextIcon } from "@/components/text-icon";
+import dayjs from "dayjs";
+import { getDateColor } from "@/utilities";
+import CustomAvatar from "@/components/custom-avatar";
 
 type ProjectCardProps = {
   id: string;
@@ -39,6 +58,16 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
     ];
     return dropdownItems;
   }, []);
+
+  const dueDateOptions = useMemo(() => {
+    if (!dueDate) return null;
+    const date = dayjs(dueDate);
+    return {
+      color: getDateColor({ date: dueDate }) as string,
+      text: date.format("MMM DD"),
+    };
+  }, [dueDate]);
+
   return (
     <div>
       <ConfigProvider
@@ -85,7 +114,35 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
               alignItems: "center",
               gap: "8px",
             }}
-          ></div>
+          >
+            <TextIcon style={{ marginRight: "4px" }} />
+            {dueDateOptions && (
+              <Tag
+                icon={<ClockCircleOutlined style={{ fontSize: "12px" }} />}
+                style={{
+                  padding: "0 4px",
+                  marginInlineEnd: "0",
+                  backgroundColor:
+                    dueDateOptions.color === "default"
+                      ? "transparent"
+                      : "unset",
+                }}
+                color={dueDateOptions.color}
+                bordered={dueDateOptions.color !== "default"}
+              >
+                {dueDateOptions.text}
+              </Tag>
+            )}
+            {!!users?.length && (
+              <Space>
+                {users.map((user) => (
+                  <Tooltip>
+                    <CustomAvatar />
+                  </Tooltip>
+                ))}
+              </Space>
+            )}
+          </div>
         </Card>
       </ConfigProvider>
     </div>
