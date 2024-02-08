@@ -1,3 +1,4 @@
+import { KanbanAddCardButton } from "@/components/tasks/kanban/add-card-button";
 import {
   KanbanBoardContainer,
   KanbanBoard,
@@ -94,6 +95,11 @@ const List = () => {
                 />
               </KanbanItem>
             ))}
+            {!taskStages.unassignedStage.length && (
+              <KanbanAddCardButton
+                onClick={() => handleAddCard({ stageId: "unassigned" })}
+              />
+            )}
           </KanbanColumn>
         </KanbanBoard>
       </KanbanBoardContainer>
