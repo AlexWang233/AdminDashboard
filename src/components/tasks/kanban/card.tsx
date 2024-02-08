@@ -11,7 +11,7 @@ import {
   theme,
 } from "antd";
 import { Text } from "@/components/text";
-import React, { useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import {
   ClockCircleOutlined,
   DeleteOutlined,
@@ -134,10 +134,21 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
               </Tag>
             )}
             {!!users?.length && (
-              <Space>
+              <Space
+                size={4}
+                wrap
+                direction="horizontal"
+                align="center"
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginLeft: "auto",
+                  marginRight: 0,
+                }}
+              >
                 {users.map((user) => (
-                  <Tooltip>
-                    <CustomAvatar />
+                  <Tooltip key={user.id} title={user.name}>
+                    <CustomAvatar name={user.name} src={user.avatarUrl} />
                   </Tooltip>
                 ))}
               </Space>
@@ -150,3 +161,13 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
 };
 
 export default ProjectCard;
+
+export const ProjectCardMemo = memo(ProjectCard, (prev, next) => {
+  return (
+    prev.id === next.id &&
+    prev.title === next.title &&
+    prev.dueDate === next.dueDate &&
+    prev.users?.length === next.users?.length &&
+    prev.updatedAt === next.updatedAt
+  );
+});
