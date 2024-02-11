@@ -30,6 +30,8 @@ import Layout from "./components/layout";
 import { resources } from "./config/resources";
 import { CompanyList } from "./pages/company/list";
 import List from "./pages/tasks/list";
+import CreateTask from "./pages/tasks/create";
+import EditTask from "./pages/tasks/edit";
 
 function App() {
   return (
@@ -75,8 +77,16 @@ function App() {
                     <Route path="new" element={<CreateCompanyPage />} />
                     <Route path="edit/:id" element={<EditCompanyPage />} />
                   </Route>
-                  <Route path="/tasks">
-                    <Route index element={<List />} />
+                  <Route
+                    path="/tasks"
+                    element={
+                      <List>
+                        <Outlet />
+                      </List>
+                    }
+                  >
+                    <Route path="new" element={<CreateTask />} />
+                    <Route path="edit/:id" element={<EditTask />} />
                   </Route>
                 </Route>
               </Routes>
