@@ -45,7 +45,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
