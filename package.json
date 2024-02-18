@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "homepage": "https://AlexWang233.github.io/AdminDashboard",
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "@ant-design/plots": "^1.2.5",
@@ -36,12 +37,15 @@
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "gh-pages": "^6.1.1",
     "prettier": "^3.2.4",
     "typescript": "^4.9.5",
     "vite": "^4.3.1",
     "vite-tsconfig-paths": "^4.3.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
